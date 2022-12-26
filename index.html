@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shooting Game in Virtual Reality</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="./shoot.js"></script>
+  </head>
+  <body>
+    <a-scene id="scene">
+
+      <!--Assets-->
+      <a-assets>
+        <a-asset-item
+        id="bowling-pin"
+        src="./models/bowling_pin/scene.gltf"></a-asset-item>
+        <a-asset-item
+        id="arms"
+        src="./models/fps_arms/scene.gltf"></a-asset-item>
+        <a-asset-item
+        id="bowling-alley"
+        src="./models/bowling_alley/scene.gltf"></a-asset-item>
+        <a-asset-item
+        id="bowling-ball"
+        src="./models/bowling_ball.glb"></a-asset-item>
+        <img id="sky" src="./models/assets/Equitriangular Sky.jpg" />
+        <img id="room" src="./models/assets/room_scifi-transformed.jpeg" />
+    </a-assets>
+      
+      <!--Light-->
+      <a-entity light="type: ambient; position: 0; rotation:-90 0 0"></a-entity>
+
+      <!--Camera and Cursor-->
+      <a-entity
+        id="camera"
+        camera
+        position="0 1.6 0"
+        wasd-controls
+        look-controls="pointerLockEnabled: false"        
+      >
+        <a-entity
+            id="weapon"
+            gltf-model="#arms"
+            position="0 -4.4 3"
+            rotation="0 180 0"
+            scale="0.5 0.5 0.5"          
+          >
+        </a-entity>
+        <a-cursor></a-cursor>        
+      </a-entity>
+      
+      <!-- Sky -->
+      <a-sky src="#room"></a-sky>
+
+      <!--Bullets-->
+      <a-entity bullets></a-entity>
+
+      <!--Ground-->
+      <a-plane
+        id="ground"
+        repeat="5 5"
+        position="0 1 -27.5"
+        rotation="-90 0 0"
+        height="50"
+        width="50"
+        color="#FBF2D4"
+        static-body
+        visible="true"
+      >
+      </a-plane>
+
+      <!--Walls-->
+      <a-box color="#1469C9" id="wall1" position="-20 1.5 -20"  depth="1" height="50" width="10" static-body></a-box>
+
+      <a-box color="#1469C9" id="wall2" position="0 1.5 -20"  depth="1" height="50" width="10" static-body></a-box>
+
+      <a-box color="#1469C9" id="wall3" position="20 1.5 -20"  depth="1" height="50" width="10" static-body></a-box>
+
+      <a-box color="#1469C9" id="wall4" position="-10 1.5 -20"  depth="1" height="50" width="10" opacity="0.5"></a-box>
+      
+      <a-box color="#2889DF" id="wall6" position="10 1.5 -20"  depth="1" height="50" width="10" opacity="0.5" ></a-box>
+
+      <a-box color="#2889DF" id="wall6" position="-30 1.5 -20"  depth="1" height="50" width="10" opacity="0.5"></a-box>
+      
+      <a-box color="#2889DF" id="wall7" position="30 1.5 -20"  depth="1" height="50" width="10" opacity="0.5" ></a-box>
+
+      <!--Boxes-->
+      <a-box  id="box1" position="-0.5 1.5 -4" color="tomato" depth="0.2" height="0.7" width="0.2" gltf-model="#bowling-pin" dynamic-body></a-box>
+
+      <a-box  id="box2" position="0 1.5 -4" color="tomato" depth="0.2" height="0.7" width="0.2" gltf-model="#bowling-pin" dynamic-body></a-box>
+
+      <a-box  id="box3" position="0.5 1.5 -4" color="tomato" depth="0.2" height="0.7" width="0.2" gltf-model="#bowling-pin" dynamic-body></a-box>
+
+      <a-box  id="box4" position="-0.25 1.5 -3.85" color="tomato" depth="0.2" height="0.7" width="0.2" gltf-model="#bowling-pin" dynamic-body></a-box>
+
+      <a-box  id="box5" position="0.25 1.5 -3.85" color="tomato" depth="0.2" height="0.7" width="0.2" gltf-model="#bowling-pin" dynamic-body></a-box>
+
+      <a-box  id="box6" position="0 1.5 -3.7" color="tomato" depth="0.2" height="0.7" width="0.5" gltf-model="#bowling-pin" dynamic-body></a-box>
+    </a-scene>
+  </body>
+</html>
